@@ -1,0 +1,64 @@
+﻿@page
+@model WebApplicationWithGUI.Pages.FamilyModel
+@{
+    
+}
+
+<h3>Family List</h3>
+<div class="container">
+    <form method="Post">
+        <label for="full_ name">Full Name</label><br />
+        <input type ="text" id="full_ name" name="full_ name" /><br />
+
+        <label for="gender">Gender</label><br />
+        <select name="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+        </select><br />
+
+        <label for="message">Age</label><br />
+        <input type ="number" id="age" name="age" /><br />
+
+        <label for="message">Relation</label><br />
+        <select name="relation" id="relation">
+            <option value="0">Father</option>
+            <option value="1">Mother</option>
+            <option value="2">Brother</option>
+            <option value="3">Sister</option>
+            <option value="4">None</option>
+        </select><br />
+
+        <input type="submit" value="Submit" />
+    
+    </form>
+</div>
+
+@if (Model.hasData)
+{    
+    //@Html.Raw(Model.res);
+    Model.family_list.Add(new Classes.Family(1, "Rabi Shrestha", "Male", 10, Classes.Relation.Father));
+    <table class="table ">
+        <thead class="thead-dark table-bordered">
+            <tr>
+                <th>SN</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Relation</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var f in Model.family_list)
+        {
+            <tr>
+                <td>@f.id</td>
+                <td>@f.full_name</td>
+                <td>@f.gender</td>
+                <td>@f.age</td>
+                <td>@f.relation</td>
+            </tr>
+        }    
+        </tbody>
+    </table>
+}
